@@ -42,7 +42,7 @@ module Q = struct
   (* The additive and multiplicative identities *)
   let zero = num_of_int 0
   let one = num_of_int 1
- 
+
   (* Functions *)
   let succ = ( +/ ) one
   let inv x = one // x
@@ -58,7 +58,7 @@ let n_of_bi = num_of_big_int
 
 module Real = struct
   type real = big_int -> num
-    
+
   (** the cannonical bound K_x as defined by bishop in chapter 2 *)
   let cannonical_bound (x: real): big_int =
     2 +-- abs_big_int (bi_of_n (ceiling_num (x N.one)))
@@ -67,7 +67,7 @@ module Real = struct
   let add_real (x: real) (y: real): real = fun n ->
     let two_n = 2 *-- n in
     (x two_n) +/ (y two_n)
-  
+
   (** multiply two real numbers according to bishops rules *)
   let mult_real (x: real) (y: real): real = fun n ->
     let k = max_big_int (cannonical_bound x) (cannonical_bound y) in
@@ -80,13 +80,13 @@ module Real = struct
 
   (** subtracts two real numbers according to bishops rules *)
   let sub_real (x: real) (y: real): real = add_real x (minus_real y)
-  
+
   (** the multiplicative number of [x] *)
   let inverse_real (x: real): real = fun n ->
     let n' = bi_of_n (ceiling_num (Q.two */ ((x n) -/ (Q.inv (n_of_bi n))))) in
     if n' > n then Q.inv (x (n *- n *- n))
     else Q.inv (x (n *- n' *- n'))
-  
+
   (** division of two real numbers according to bishops rules *)
   let div_real (x: real) (y: real): real = mult_real x (inverse_real y)
 
