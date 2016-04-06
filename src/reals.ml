@@ -59,6 +59,9 @@ let n_of_bi = num_of_big_int
 module Real = struct
   type real = big_int -> num
 
+  let zero_real = fun n -> Q.zero
+  let unit_real = fun n -> Q.one
+
   (** the cannonical bound K_x as defined by bishop in chapter 2 *)
   let cannonical_bound (x: real): big_int =
     2 +-- abs_big_int (bi_of_n (ceiling_num (x N.one)))
@@ -95,4 +98,10 @@ module Real = struct
   let ( -+ ) = sub_real
   let ( *+ ) = mult_real
   let ( /+ ) = div_real
+
+  let approximate_as_num (r: real) (a: big_int) =
+    r a
+
+  let approximate_as_float (r: real) (a: big_int) =
+    float_of_num (r a)
 end
