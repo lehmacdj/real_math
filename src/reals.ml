@@ -98,10 +98,23 @@ module Real = struct
   let ( -+ ) = sub_real
   let ( *+ ) = mult_real
   let ( /+ ) = div_real
+  
+  (** the default accuracy for functions that evaluate a real number *)
+  let accuracy = ref 1000
 
-  let approximate_as_num (r: real) (a: big_int) =
-    r a
+  (** set the accuracy for functions that evaluate a real number to x *)
+  let set_accuracy x = accuracy := x
 
-  let approximate_as_float (r: real) (a: big_int) =
-    float_of_num (r a)
+  (** try looking at ps4 where I implemented a formatting function for strings
+   * as a source of guidance for implementing stuffs *)
+
+
+  module Math = struct
+    let taylor_sum = failwith "unimplemented"
+    let sqrt_real = failwith "unimplemented"
+    let sin_real = failwith "unimplemented"
+    let cos_real = failwith "unimplemented"
+    let tan_real = failwith "unimplemented"
+  end
+
 end
