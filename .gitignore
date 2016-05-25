@@ -1,2 +1,20 @@
-# Unwanted files
-ps3/
+# Files created by cs3110 compile
+_build/
+_cs3110/
+_tags
+
+# tagfiles from ctags
+tags
+
+# Files created by latex compilation
+*.log
+*.aux
+*.pdf
+*.fls
+*.fdb_latexmk
+
+# But do version the project writeup
+!writeup.pdf
+
+# Ignore ps5 because it is individually version controlled
+ps5/
